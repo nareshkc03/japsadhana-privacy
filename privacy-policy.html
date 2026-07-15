@@ -213,21 +213,22 @@
 
 <div class="container">
 
-  <span class="updated">Last updated: May 2, 2026</span>
+  <span class="updated">Last updated: July 15, 2026</span>
 
   <div class="intro">
     <strong>JapSadhana is built on trust.</strong> Your spiritual practice is deeply personal.
     This policy explains plainly what data we collect, why, and how it is protected.
     <br><br>
-    The core app — japa counting, mala tracking, history, sankalpa — works
+    The core app — jap counting, mala tracking, history, sankalpa — works
     <strong>completely offline with no account required</strong>. Data collection only
-    applies to the optional Community (leaderboard) feature.
+    applies to optional signed-in features: Community (leaderboard), Cloud Backup,
+    and Saved Bookmarks in the Wisdom tab.
   </div>
 
   <!-- 1 -->
   <h2><span class="icon">📋</span> Information We Collect</h2>
 
-  <p>We collect the minimum data necessary to operate the Community feature. Nothing more.</p>
+  <p>We collect the minimum data necessary to operate signed-in features. Nothing more.</p>
 
   <table>
     <tr>
@@ -237,23 +238,33 @@
     </tr>
     <tr>
       <td><strong>Google display name</strong></td>
-      <td>When you sign in to the Community tab</td>
+      <td>When you sign in with Google</td>
       <td>Shown next to your rank on the leaderboard</td>
     </tr>
     <tr>
       <td><strong>Google email address</strong></td>
-      <td>When you sign in to the Community tab</td>
+      <td>When you sign in with Google</td>
       <td>To uniquely identify your account</td>
     </tr>
     <tr>
       <td><strong>Google profile picture</strong></td>
-      <td>When you sign in to the Community tab</td>
+      <td>When you sign in with Google</td>
       <td>Displayed on your leaderboard entry</td>
     </tr>
     <tr>
-      <td><strong>Japa chant count</strong></td>
+      <td><strong>Jap chant count &amp; jap time (seconds)</strong></td>
       <td>While you participate in a challenge</td>
-      <td>To calculate your leaderboard rank. Only tap &amp; auto-japa counts — manual entries are never sent.</td>
+      <td>To calculate your leaderboard rank (by chants or by time). Only tap &amp; auto-jap counts — manual entries are never sent.</td>
+    </tr>
+    <tr>
+      <td><strong>Progress backup (opt-in)</strong></td>
+      <td>Only if you enable Cloud Backup in Options</td>
+      <td>An encrypted JSON snapshot of your local jap history, deity preferences, sankalpa, and app settings — so you can restore on a new phone. Stored as one row per user; overwritten on each backup.</td>
+    </tr>
+    <tr>
+      <td><strong>Saved bookmarks</strong></td>
+      <td>When you tap the heart on a video, article, or PDF in the Wisdom tab</td>
+      <td>To sync your favourites across devices under your account. Only the item IDs and save timestamps are stored.</td>
     </tr>
     <tr>
       <td><strong>Expo push token</strong></td>
@@ -263,8 +274,11 @@
   </table>
 
   <div class="callout">
-    🔒 Your full japa history, deity preferences, sankalpa goals, and app settings
-    <strong>never leave your device</strong>. They are stored only in your phone's local storage.
+    🔒 Your full jap history, deity preferences, sankalpa goals, and app settings
+    <strong>stay on your device by default</strong> and are only uploaded (as an
+    encrypted JSON snapshot) if you explicitly enable <strong>Cloud Backup</strong>
+    in Options. Recorded mantra audio and custom deity photos are never uploaded
+    under any setting.
   </div>
 
   <!-- 2 -->
@@ -283,28 +297,36 @@
 
   <p>
     The microphone permission is used <strong>only</strong> to record your own mantra
-    for the auto-japa playback feature. Recordings are stored locally on your device
-    and are never uploaded to any server.
+    for the auto-jap playback feature. Recordings are stored locally on your device
+    and are never uploaded to any server — not even when Cloud Backup is enabled.
   </p>
 
   <!-- 3 -->
   <h2><span class="icon">💾</span> How Your Data Is Stored</h2>
 
-  <p><strong>On your device:</strong> All japa history, settings, and sankalpa data are
-  stored using React Native AsyncStorage — a local, on-device key-value store.
-  This data is never transmitted and is removed if you uninstall the app.</p>
+  <p><strong>On your device:</strong> Jap history, settings, sankalpa data, mantra
+  recordings, and custom deity photos are stored in the app's private storage
+  (React Native AsyncStorage for structured data; the app's document directory
+  for media files). None of this is transmitted by default, and all of it is
+  removed if you uninstall the app.</p>
 
-  <p><strong>On our servers:</strong> If you sign in to the Community feature, your name,
-  email, profile picture, and challenge chant count are stored in a secure MongoDB
-  database hosted on Render (USA). Your JWT authentication token is stored in your
-  device's encrypted secure store (Expo SecureStore).</p>
+  <p><strong>On our servers:</strong> If you sign in with Google, your name, email,
+  profile picture, and any challenge participation (chant count &amp; jap time)
+  are stored in a secure MongoDB database hosted on Render (USA). If you enable
+  Cloud Backup, one JSON snapshot per user is stored in the same database
+  (overwritten on each new backup, not versioned). If you save Wisdom-tab
+  bookmarks, only item IDs are stored — never the content itself. Your JWT
+  authentication token is stored in your device's encrypted secure store
+  (Expo SecureStore).</p>
 
   <!-- 4 -->
   <h2><span class="icon">🤝</span> How We Use Your Data</h2>
 
   <ul>
-    <li>To display your name and rank on the japa leaderboard</li>
-    <li>To track your participation in naam jap challenges</li>
+    <li>To display your name and rank on the jap leaderboard</li>
+    <li>To track your participation in naam jap challenges (chants and time)</li>
+    <li>To restore your progress when you reinstall the app or move to a new phone (Cloud Backup, opt-in)</li>
+    <li>To sync your Wisdom-tab favourites across your devices</li>
     <li>To send push notifications for challenge invites (only if you sign in)</li>
     <li>To maintain your login session so you don't need to sign in every time</li>
   </ul>
@@ -337,7 +359,7 @@
 
   <p>If you are a parent and believe your child has submitted personal information through
   this app, please contact us at
-  <a href="mailto:nareshkc03@gmail.com" style="color:#ff6b35">nareshkc03@gmail.com</a>
+  <a href="mailto:japsadhana@gmail.com" style="color:#ff6b35">japsadhana@gmail.com</a>
   and we will delete it promptly.</p>
 
   <!-- 7 -->
@@ -346,12 +368,15 @@
   <p>You have full control over your data:</p>
 
   <ul>
-    <li><strong>Delete local data</strong> — uninstall the app. All locally stored data is removed.</li>
-    <li><strong>Sign out of Community</strong> — tap Sign Out in the Community tab. Your JWT token is deleted from your device immediately.</li>
+    <li><strong>Delete local data</strong> — uninstall the app. All locally stored data (jap history, settings, mantra recordings, custom deity photos) is removed.</li>
+    <li><strong>Disable Cloud Backup</strong> — turn off Cloud Backup in Options. New backups will stop; the last backup remains until you delete your account.</li>
+    <li><strong>Remove a saved bookmark</strong> — tap the filled heart on any Wisdom-tab item to unsave it. Your list is updated on the server immediately.</li>
+    <li><strong>Sign out</strong> — tap Sign Out in the Community tab. Your JWT token is deleted from your device immediately.</li>
     <li><strong>Delete your account</strong> — email us at
-      <a href="mailto:nareshkc03@gmail.com" style="color:#ff6b35">nareshkc03@gmail.com</a>
+      <a href="mailto:japsadhana@gmail.com" style="color:#ff6b35">japsadhana@gmail.com</a>
       with the subject "Delete My Account". We will permanently delete your profile,
-      email address, and all associated challenge scores from our server within 7 days.</li>
+      email address, challenge scores, cloud backup snapshot, and saved bookmarks
+      from our server within 7 days.</li>
   </ul>
 
   <!-- 8 -->
@@ -387,7 +412,7 @@
     <p>
       <strong>Naresh Choudhary</strong><br />
       Developer, JapSadhana<br />
-      <a href="mailto:nareshkc03@gmail.com">nareshkc03@gmail.com</a>
+      <a href="mailto:japsadhana@gmail.com">japsadhana@gmail.com</a>
     </p>
   </div>
 
